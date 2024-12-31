@@ -5,6 +5,7 @@ import { test, expect } from '@playwright/test';
 
 test('Scrap Product names with Price and Link',async () => {
     const browser = await chromium.launch({ headless: false });
+    try{
     const page = await browser.newPage();
     
     // Navigate to the e-commerce page with products ordered by Price
@@ -29,7 +30,9 @@ test('Scrap Product names with Price and Link',async () => {
    // Saving the product information based on the Filter[low to High order]
     fs.writeFileSync("./output-json/demo2_output.json", JSON.stringify(products, null, 2));
     console.log("Data saved in the test-results Folder");
-   
+}catch (error) {
+    console.error("Error: " + error);
+  }
     await browser.close();
     });
 
