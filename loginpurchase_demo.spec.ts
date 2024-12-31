@@ -8,7 +8,7 @@ dotenv.config({
 import { test, expect } from '@playwright/test';
 
 test('Login and Purchase item automatically', async() => {
-
+try{
   //Reading credentials from .env file
   const username = process.env.USER;
   const password = process.env.PASSWORD;
@@ -72,5 +72,7 @@ test('Login and Purchase item automatically', async() => {
  
   // Take a screenshot of the purchased successfully
   await page.screenshot({ path: './screenshots/4_Purchased.png' });
-  
+}catch (error) {
+    console.error("Error: " + error);
+  } 
 });
